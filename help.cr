@@ -1,5 +1,7 @@
 require "option_parser"
 
+say_hi_to = ""
+
 OptionParser.parse do |parser|
   parser.banner = "Bem vindo ao Meu App!"
   
@@ -12,4 +14,13 @@ OptionParser.parse do |parser|
     puts parser
     exit
   end
+
+  parser.on "-H NAME", "--hello=NAME", "Diz olá para alguém" do |name|
+    say_hi_to = name
+  end
+end
+
+unless say_hi_to.empty?
+  puts ""
+  puts "Olá, #{say_hi_to}!"
 end
