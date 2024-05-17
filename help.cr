@@ -18,6 +18,19 @@ OptionParser.parse do |parser|
   parser.on "-H NAME", "--hello=NAME", "Diz olá para alguém" do |name|
     say_hi_to = name
   end
+
+  parser.missing_option do |option_flag|
+    STDERR.puts "Erro: #{option_flag} está faltando algo."
+    STDERR.puts ""
+    STDERR.puts parser
+    exit(1)
+  end
+
+  parser.invalid_option do |option_flag|
+    STDERR.puts "Erro: #{option_flag} não é uma opção válida."
+    STDERR.puts parser
+    exit(1)
+  end
 end
 
 unless say_hi_to.empty?
